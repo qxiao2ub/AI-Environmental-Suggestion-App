@@ -2,6 +2,12 @@
 
 This repository contains a student-friendly prototype for an AI-based Environmental Suggestion App. It is designed for local farmers, residents, and local government teams that need early environmental risk awareness and practical action suggestions.
 
+
+## Project team
+
+- **Author:** Angad Singh
+- **Mentor:** Dr. Qingyang Xiao
+
 ## What the prototype does
 
 - Generates realistic demo data for weather, flooding, acid rain, air quality, crop status, senior vulnerability, and traffic.

@@ -44,6 +44,9 @@ def prepare_uploaded_data(uploaded_file) -> pd.DataFrame:
 
 with st.sidebar:
     st.header("Prototype controls")
+    st.markdown("**Author:** Angad Singh")
+    st.markdown("**Mentor:** Dr. Qingyang Xiao")
+    st.divider()
     uploaded = st.file_uploader("Optional: upload data with the prototype schema", type=["csv"])
     user_type = st.selectbox("User group", ["Farmer", "Resident", "Local Government"])
     forecast_window = st.slider("Rows to view for selected district", min_value=7, max_value=45, value=21, step=7)
@@ -79,8 +82,8 @@ latest = pred.sort_values("timestamp").iloc[-1]
 if "bandit" not in st.session_state:
     st.session_state.bandit = ContextualBandit(epsilon=0.05, alpha=0.35, seed=123)
 
-tab_dashboard, tab_suggestions, tab_clusters, tab_pipeline, tab_api = st.tabs(
-    ["Dashboard", "AI Suggestions + RL", "Clustering", "AI Pipeline", "API Schema"]
+tab_dashboard, tab_suggestions, tab_clusters, tab_pipeline, tab_api, tab_about = st.tabs(
+    ["Dashboard", "AI Suggestions + RL", "Clustering", "AI Pipeline", "API Schema", "About"]
 )
 
 with tab_dashboard:
@@ -191,5 +194,29 @@ with tab_api:
     st.markdown(
         """
         Suggested next production step: replace the demo generator with four adapters: weather forecast, local environmental sensors, air-quality, and traffic. Keep the output columns stable so the AI pipeline does not need to change.
+        """
+    )
+
+with tab_about:
+    st.subheader("Project team")
+    st.markdown("### AI Environmental Suggestion App")
+    col_author, col_mentor = st.columns(2)
+    with col_author:
+        st.markdown("**Author**")
+        st.write("Angad Singh")
+    with col_mentor:
+        st.markdown("**Mentor**")
+        st.write("Dr. Qingyang Xiao")
+
+    st.markdown("---")
+    st.markdown(
+        """
+        This educational prototype demonstrates how weather, flooding, acid-rain, air-quality,
+        crop, community-vulnerability, and traffic data can support farmers, residents, and local
+        government teams. It combines supervised machine learning, a neural-network model,
+        environmental clustering, and feedback-based reinforcement learning.
+
+        **Prototype notice:** The dashboard is for research and education. Users should follow
+        official emergency alerts and qualified agricultural, environmental, and public-health guidance.
         """
     )
